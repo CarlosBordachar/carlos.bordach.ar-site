@@ -1,0 +1,270 @@
+/*@import url("https://fonts.googleapis.com/css?family=Montserrat");*/
+:root {
+  --bg-color-light: hsl(44 70% 98% / 1);
+  --bg-color-dark: hsl(44 70% 95% / 1);
+  --txt-color-top: #4812d9;
+  --txt-color-bottom: #06deff;
+  --txt-color: #8299b0;
+  --txt-color-lnk-hover: #e0e6eb;
+  --txt-color-lnk-active: #3b4c5e;
+  --shadow-color: rgba(206, 208, 211, 0.25);
+  --shadow-color-hover: rgba(206, 208, 211, 0.5);
+  --shadow-color-active: rgb(188, 202, 220);
+
+  --shadow-color-25: rgba(22, 12, 102, 0.1);
+  --shadow-color-50: rgba(22, 28, 59, 0.1);
+  --shadow-color-25-hover: rgba(22, 12, 102, 0.03);
+  --shadow-color-50-hover: rgba(22, 28, 59, 0.03);
+  --shadow-color-25-active: rgba(199, 6, 255, 0.15);
+  --shadow-color-50-active: rgba(199, 6, 255, 0.05);
+  --stroke-color: rgba(199, 6, 255, 0.25);
+
+  --icon-color-base: #D9D9E0;
+  --icon-color-twitch: #6441A4;
+  --icon-color-twitter: #1DA1F2;
+  --icon-color-youtube: #F00;
+}
+body {
+  margin:0;
+  overflow: hidden; /*FF fix*/
+  position: fixed;
+  height: 100%;
+  
+  font-family: 'capture_itregular', 'Montserrat', Arial, sans-serif;
+  font-weight:400;
+
+  user-select: none;
+
+/*background: radial-gradient(#1d1f20, #000);*/
+/*background: hsl(210, 30%, 0%) radial-gradient(hsl(210, 30%, 20%), hsl(210, 30%, 0%));*/
+/*  background: radial-gradient(ellipse at bottom, var(--bg-color-light) 0%, var(--bg-color-dark) 100%);*/
+  background: white;
+}
+
+.bg-main {
+  position:absolute;
+  width: 100vw;
+  height: 100vh;
+  
+  background-image: 
+    radial-gradient(ellipse at top left, var(--bg-color-light) 0%, var(--bg-color-dark) 100%), 
+    url("../images/bg-bordacharly.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; /*100%*/  
+
+  filter: blur(1px);
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Make break line between title and socials */
+  align-content:center;
+  flex-wrap: wrap;
+}
+
+/* Inserting a collapsed row between two flex items will make 
+ * the flex item that comes after it break to a new row */
+.container > hr {
+  flex-basis: 100%; 
+  height: 0; 
+  margin: 0; 
+  border: none;
+}
+
+/******* SHADOW *******/
+
+.shadows {
+  text-shadow: -5px 5px 10px var(--shadow-color-25),
+    -5px 5px 20px var(--shadow-color-50);
+  
+/*  animation: animTitle 5s ease-out infinite alternate;*/
+  animation: animOpacity 10s ease 1,
+    animBreathe 3.5s ease 10s /*start after 5seg*/ infinite alternate;
+}
+
+.shadows:hover {
+    text-shadow: 5px 6px 20px var(--shadow-color-25-hover),
+      5px 6px 30px var(--shadow-color-50-hover);
+}
+
+.shadows:active {
+  text-shadow: 10px 6px 30px var(--shadow-color-25-active),
+    10px 6px 40px var(--shadow-color-50-active);
+}
+
+@keyframes animTitle {
+  0% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {    
+    opacity: 0.5;
+  }
+}
+
+@keyframes animOpacity {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.7;
+    letter-spacing: 0.25em;
+  }
+}
+
+@keyframes animBreathe {
+  0% {
+    opacity: 0.7;
+    /*transform: scale(0.9);*/
+    letter-spacing: 0.25em;
+  }
+  80%, 100% {
+    opacity: 1;
+    /*transform: scale(1);*/
+    letter-spacing: 0.5em;
+  }
+}
+
+/******* TEXT *******/
+
+.title {
+  position: relative;
+
+  text-transform: uppercase;
+/*  user-select: none;*/
+  
+  font-size: 10vw;
+/*  letter-spacing: 0.05em;*/
+  color: white;
+  background: -webkit-linear-gradient(var(--txt-color-top), var(--txt-color-bottom));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: var(--stroke-color);
+
+  transition: font-size 0.1s ease-out;
+}
+
+.copyright {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: -2em;
+  margin-bottom: 2em;
+  
+/*  user-select: none;*/
+  font-family: 'Montserrat', Arial, sans-serif;
+/*  font-size: 0.8em;*/
+/*  font-size: 0.8vw;*/
+  font-size: 8px;
+  letter-spacing: 0.2vw;
+  color: var(--txt-color);
+}
+
+
+/******* LINKS *******/
+
+.link {
+  display: inline-flex;
+}
+
+.copyright .link::before {
+  content: "•";
+  display: inline-block;
+  margin: 0px 1em;
+}
+
+.copyright .link::after {
+  content: "•";
+  display: inline-block;
+  margin: 0px 1em;
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: var(--txt-color);
+
+  border-bottom: 0.0625em solid rgba(130, 153, 176, 0.05);
+  background-image: radial-gradient(circle, var(--txt-color), var(--txt-color-lnk-hover));
+  background-position: 50% calc(100% + .0625em);
+  background-repeat: no-repeat;
+  background-size: 0 .0625em;
+  transition: background-size 0.2s;
+}
+
+a:active, a:focus, a:hover {
+  text-decoration: none;
+}
+
+.link:active, .link:focus, .link:hover {
+  background-size: 68% .0625em;
+  
+}
+
+a:focus, a:hover {
+  color: var(--txt-color-lnk-hover);
+}
+
+a:active {
+  color: var(--txt-color-lnk-active);
+}
+
+/*
+  a[href*="http"] {
+  background: url('https://mdn.mozillademos.org/files/12982/external-link-52.png') no-repeat 100% 0;
+  background-size: 16px 16px;
+  padding-right: 19px;
+}
+*/
+
+/******* SVG *******/
+
+.socials {
+  position: relative;
+  /*margin-left: 55vw;*/
+  font-size: 2.5vw;
+}
+
+.icon {
+  display: inline-block;
+
+  /* Default color if not define a gradient 
+  and specific color in class. */
+  color: var(--icon-color-base);
+  width: 1em;
+  height: 1em;
+  padding: 0 0.2em 0 0.2em;
+
+  /* Definido para permitir utilizar Color 
+  en las clases de cada SVG 
+  (icon-twitch, icon-twitter, icon-youtube) */
+  fill: currentColor;
+}
+
+.socials > a { 
+  outline: none;
+  border: 0;
+  
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.socials > a:active,
+.socials > a:focus,
+.socials > a:hover { 
+  opacity: 1; 
+}
+/*.icon-twitch:hover { fill: var(--icon-color-twitch, #6441A4); }
+.icon-twitter:hover { fill: var(--icon-color-twitter, #1DA1F2); }
+.icon-youtube:hover { fill: var(--icon-color-youtube, #F00); }*/
